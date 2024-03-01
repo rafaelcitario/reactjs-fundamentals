@@ -1,5 +1,10 @@
-export function Post(props) {
-  return <p>{props.content}</p>;
+export function Post({ author, content }) {
+  return (
+    <div>
+      <strong>{author}</strong>
+      <p>{content}</p>
+    </div>
+  );
 }
 
 // Default exports vs Named exports
