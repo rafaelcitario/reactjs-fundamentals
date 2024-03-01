@@ -6,7 +6,7 @@ export const Post = () => {
         <div className={styles.author}>
           <img
             className={styles.avatar}
-            src="https://images.unsplash.com/photo-1544278864-46982bacd063?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://static.glamurama.uol.com.br/2022/06/jon-snow.jpg"
           />
           <div className={styles.authorInfo}>
             <strong>Jhon Snow</strong>
@@ -15,19 +15,28 @@ export const Post = () => {
         </div>
         <time dateTime="2024-05-11 08:13:30">Públicado há 1h</time>
       </header>
+
       <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
         <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
+          Em meio à escuridão do inverno, mantenham a chama da esperança acesa.
         </p>
         <p>
-          👉 <a href="">jane.design/doctorcare</a>
+          Juntos, enfrentaremos qualquer desafio que o destino nos apresente.
         </p>
         <p>
-          <a href="">#novoprojeto #nlw #rocketseat</a>
+          <a href="">#WinterIsComing #ForTheThrone</a>
         </p>
       </div>
+
+      <footer className={styles.comentaryForm}>
+        <form>
+          <strong>Deixe seu feedback</strong>
+          <textarea />
+          <div className={styles.buttonContainer}>
+            <button type="submit">Publicar</button>
+          </div>
+        </form>
+      </footer>
     </article>
   );
 };
