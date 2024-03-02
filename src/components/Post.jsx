@@ -1,33 +1,26 @@
 import styles from "../components/Post.module.css";
 import { Avatar } from "./Avatar";
 import { Comentary } from "./Comentary";
-export const Post = () => {
+
+// ALTERAR O PÚBLICADO A X HORAS
+export const Post = (props) => {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar
-            hasBorder
-            src="https://static.glamurama.uol.com.br/2022/06/jon-snow.jpg"
-          />
+          <Avatar hasBorder src={props.author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>Jhon Snow</strong>
-            <span>Comandante da Patrulha da Noite</span>
+            <strong>{props.author.name}</strong>
+            <span>{props.author.role}</span>
           </div>
         </div>
-        <time dateTime="2024-05-11 08:13:30">Públicado há 1h</time>
+        <time title={props.publishedAt} dateTime={props.publishedAt}>
+          Públicado há 1h
+        </time>
       </header>
 
       <div className={styles.content}>
-        <p>
-          Em meio à escuridão do inverno, mantenham a chama da esperança acesa.
-        </p>
-        <p>
-          Juntos, enfrentaremos qualquer desafio que o destino nos apresente.
-        </p>
-        <p>
-          <a href="">#WinterIsComing #ForTheThrone</a>
-        </p>
+        <p>ADICIONAR UM CONTEÚDO AQUI</p>
       </div>
 
       <footer className={styles.comentaryForm}>
