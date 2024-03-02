@@ -78,7 +78,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1rem;
+  padding-top: 1rem;
 }
 .comentaryForm textarea{
   border-radius: 8px;
@@ -107,8 +107,11 @@
 .buttonContainer{
   visibility: hidden;
   max-height: 0;
+
+  transition: margin .5s, height .9s;
 }
 .comentaryForm:focus-within .buttonContainer{
   visibility: visible;
   max-height: none;
+  margin-bottom: 3rem;
 }

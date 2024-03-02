@@ -1,4 +1,5 @@
 import styles from "../components/Post.module.css";
+import { Comentary } from "./Comentary";
 export const Post = () => {
   return (
     <article className={styles.post}>
@@ -37,6 +38,12 @@ export const Post = () => {
           </div>
         </form>
       </footer>
+
+      <div className={styles.commentList}>
+        <Comentary />
+        <Comentary />
+        <Comentary />
+      </div>
     </article>
   );
 };

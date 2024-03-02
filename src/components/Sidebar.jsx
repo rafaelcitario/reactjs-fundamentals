@@ -11,11 +11,11 @@ export const Sidebar = () => {
       <div className={styles.profile}>
         <img
           className={styles.avatar}
-          src="https://images.unsplash.com/photo-1544278864-46982bacd063?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://cdn.pensador.com/img/authors/ty/ri/tyrion-lannister-2-l.jpg"
         />
 
-        <strong>Rafael Citario</strong>
-        <span>Web Developer</span>
+        <strong>Tyrion Lannister</strong>
+        <span>Mão do Rei</span>
       </div>
       <footer>
         <button>
