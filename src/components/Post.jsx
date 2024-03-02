@@ -1,12 +1,13 @@
 import styles from "../components/Post.module.css";
+import { Avatar } from "./Avatar";
 import { Comentary } from "./Comentary";
 export const Post = () => {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
-            className={styles.avatar}
+          <Avatar
+            hasBorder
             src="https://static.glamurama.uol.com.br/2022/06/jon-snow.jpg"
           />
           <div className={styles.authorInfo}>

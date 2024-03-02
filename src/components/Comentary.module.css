@@ -76,8 +76,15 @@
 .commentContent>header>button {
   background-color: transparent;
   border: none;
+  border-radius: 1px;
   color: var(--gray-400);
   cursor: pointer;
+  line-height: 0;
+
+}
+
+.commentContent>header>button:hover {
+  color: var(--red-500);
 }
 
 
@@ -96,13 +103,16 @@
 .commentBox>footer>button {
   background-color: transparent;
   border: none;
+  border-radius: 1px;
   display: flex;
   gap: .625rem;
   align-items: center;
   font-weight: 700;
   color: var(--gray-400);
+
 }
 
 .commentBox>footer>button>span::before {
-  content: " • ";
+  content: '\2022';
+  padding: 0 0.25rem;
 }
