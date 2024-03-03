@@ -1,9 +1,23 @@
-import styles from "../components/Post.module.css";
+import { format, formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale/pt-BR";
 import { Avatar } from "./Avatar";
 import { Comentary } from "./Comentary";
+import styles from "../components/Post.module.css";
 
 // ALTERAR O PÚBLICADO A X HORAS
 export const Post = (props) => {
+  const publishedDateFormatted = format(
+    props.publishedAt,
+    "dd 'de' LLL 'às' HH:mm",
+    { locale: ptBR }
+  );
+  const distancePublishedDatetoNow = formatDistanceToNow(
+    props.publishedAt.toString(),
+    { locale: ptBR, includeSeconds: true }
+  )
+    .replace("cerca de", "há")
+    .concat("  atrás");
+
   return (
     <article className={styles.post}>
       <header>
@@ -14,8 +28,8 @@ export const Post = (props) => {
             <span>{props.author.role}</span>
           </div>
         </div>
-        <time title={props.publishedAt} dateTime={props.publishedAt}>
-          Públicado há 1h
+        <time title={publishedDateFormatted} dateTime={props.publishedAt}>
+          {distancePublishedDatetoNow}
         </time>
       </header>
 
