@@ -16,11 +16,3 @@
   border-radius: 8px;
   transition: width .2s, height .9s;
 }
-
-.avatar:hover,
-.avatarHasNoBorder:hover {
-  width: calc(12rem + 24px);
-  height: calc(12rem + 24px);
-  position: absolute;
-  cursor: zoom-in;
-}

@@ -20,7 +20,12 @@ export const Post = (props) => {
       </header>
 
       <div className={styles.content}>
-        <p>ADICIONAR UM CONTEÚDO AQUI</p>
+        {props.content.paragraphs?.map((paragraph) => {
+          return <p>{paragraph}</p>;
+        })}
+        {props.content.links?.map((links) => {
+          return <a href="">{links}</a>;
+        })}
       </div>
 
       <footer className={styles.comentaryForm}>
