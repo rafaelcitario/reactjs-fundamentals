@@ -44,7 +44,7 @@ const posts = [
       ],
       links: ["#WinterIsComing #ForTheThrone"],
     },
-    publishedAt: new Date("03-03-2024 13:56:30"),
+    publishedAt: new Date("03-01-2024 13:56:30"),
   },
 ];
 

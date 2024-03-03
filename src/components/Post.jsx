@@ -2,21 +2,32 @@ import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 import { Avatar } from "./Avatar";
 import { Comentary } from "./Comentary";
+import { useState } from "react";
 import styles from "../components/Post.module.css";
 
-// ALTERAR O PÚBLICADO A X HORAS
 export const Post = (props) => {
+  const [comentaries, setComentaries] = useState([]);
+
+  // Formating date and hours using date-fns
   const publishedDateFormatted = format(
     props.publishedAt,
     "dd 'de' LLL 'às' HH:mm",
     { locale: ptBR }
   );
+
+  // formating the difference of publish time use date-fns to
   const distancePublishedDatetoNow = formatDistanceToNow(
     props.publishedAt.toString(),
     { locale: ptBR, includeSeconds: true }
   )
     .replace("cerca de", "há")
     .concat("  atrás");
+
+  // function handle of submit form comentaries
+  function handleComentaries() {
+    event.preventDefault();
+    return setComentaries([...comentaries, comentaries.length + 1]);
+  }
 
   return (
     <article className={styles.post}>
@@ -28,7 +39,10 @@ export const Post = (props) => {
             <span>{props.author.role}</span>
           </div>
         </div>
-        <time title={publishedDateFormatted} dateTime={props.publishedAt}>
+        <time
+          title={publishedDateFormatted}
+          dateTime={props.publishedAt.toISOString()}
+        >
           {distancePublishedDatetoNow}
         </time>
       </header>
@@ -43,7 +57,7 @@ export const Post = (props) => {
       </div>
 
       <footer className={styles.comentaryForm}>
-        <form>
+        <form onSubmit={handleComentaries}>
           <strong>Deixe seu feedback</strong>
           <textarea />
           <div className={styles.buttonContainer}>
@@ -53,9 +67,9 @@ export const Post = (props) => {
       </footer>
 
       <div className={styles.commentList}>
-        <Comentary />
-        <Comentary />
-        <Comentary />
+        {comentaries.map((comment) => {
+          return <Comentary />;
+        })}
       </div>
     </article>
   );
