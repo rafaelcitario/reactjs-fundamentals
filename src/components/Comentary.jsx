@@ -3,7 +3,6 @@ import { ThumbsUp, Trash } from "phosphor-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 import styles from "./Comentary.module.css";
-import { DeleteCommentBox } from "./DeleteCommentWrapper";
 
 export const Comentary = ({ content, onDeleteComment }) => {
 

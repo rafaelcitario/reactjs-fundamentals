@@ -33,18 +33,22 @@ export const Post = (props) => {
 
   function handleChangeComentaryField(event) {
     setCommentaryContent(event.target.value);
+    event.target.setCustomValidity("");
   }
 
   function deleteComment(comment) {
-    commentaryList.filter((itemToDelete, index) => {
-      if (comment.match(itemToDelete)) {
-        commentaryList.splice(index, 1)
-        return commentaryList
-      }
+    const commentListWithoutDeletedOne = commentaryList.filter(itemToRemove => {
+      return itemToRemove !== comment;
     })
 
-    setCommentaryList([...commentaryList])
+    setCommentaryList(commentListWithoutDeletedOne);
   }
+
+  function handleValidateCommentField(event) {
+    console.log(event.target.setCustomValidity('Por favor insira sua menssagem antes de públicar.'))
+  }
+
+  const isDisableWhenIsEmpity = commentaryContent.length === 0;
 
   return (
     <article className={styles.post}>
@@ -77,14 +81,16 @@ export const Post = (props) => {
         <form onSubmit={handleSubmitFormCommentary}>
           <strong>Deixe seu feedback</strong>
           <textarea
+            required
             onChange={handleChangeComentaryField}
+            onInvalid={handleValidateCommentField}
             name="commentArea"
             value={commentaryContent}
             maxLength={3000}
             placeholder="O que você pensa sobre isso?"
           />
           <div className={styles.buttonContainer}>
-            <button type="submit">Publicar</button>
+            <button type="submit" disabled={isDisableWhenIsEmpity} >Publicar</button>
           </div>
         </form>
       </footer>

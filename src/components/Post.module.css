@@ -110,7 +110,12 @@
   cursor: pointer;
 }
 
-.comentaryForm button:hover {
+.comentaryForm button:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+.comentaryForm button:hover:not(:disabled):hover {
   background-color: var(--green-300);
 }
 
