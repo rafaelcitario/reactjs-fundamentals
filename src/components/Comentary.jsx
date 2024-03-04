@@ -3,8 +3,10 @@ import { ThumbsUp, Trash } from "phosphor-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 import styles from "./Comentary.module.css";
+import { useState } from "react";
 
 export const Comentary = ({ content, onDeleteComment }) => {
+  const [clapInterator, setClapInterator] = useState(0);
 
   function handleDeleteComment() {
     onDeleteComment(content);
@@ -25,6 +27,22 @@ export const Comentary = ({ content, onDeleteComment }) => {
     .replace("menos de", "há")
     .replace("cerca de", "há")
     .concat("  atrás");
+
+
+  function handleClapComentary() {
+    /*
+    * whenever you need to change the state of something
+    * and to make these changes you depend on the previous value of that something
+    * it is recommended to use this closure (callback)
+    *
+    * A closure is a callback
+    * is a function called within another function.
+     */
+    setClapInterator((state) => {
+      return state + 1;
+    });
+  }
+
 
   return (
     <div className={styles.comment}>
@@ -49,11 +67,11 @@ export const Comentary = ({ content, onDeleteComment }) => {
         </div>
 
         <footer>
-          <button title="Curtir comentário">
+          <button onClick={handleClapComentary} title="Curtir comentário">
             <ThumbsUp weight="bold" />
             Aplaudir
-            <span className={styles.likeNumber}>0</span>
           </button>
+          <span className={styles.likeNumber}>{clapInterator}</span>
         </footer>
       </div>
     </div>

@@ -101,19 +101,25 @@
 
 }
 
-.commentBox>footer>button {
+.commentBox>footer {
+  display: flex;
+}
+
+.commentBox>footer>button,
+.likeNumber {
   background-color: transparent;
   border: none;
   border-radius: 1px;
   display: flex;
-  gap: .625rem;
+  gap: .225rem;
   align-items: center;
+  justify-content: space-evenly;
   font-weight: 700;
   color: var(--gray-400);
-
+  cursor: pointer;
 }
 
-.commentBox>footer>button>span::before {
+.likeNumber::before {
   content: '\2022';
-  padding: 0 0.25rem;
+  padding: 0 0.75rem;
 }
