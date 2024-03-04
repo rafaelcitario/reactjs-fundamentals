@@ -4,7 +4,6 @@ import { Sidebar } from "./components/Sidebar";
 
 import styles from "./App.module.css";
 import "./global.css";
-import { Key } from "phosphor-react";
 
 // author: avatar, name, role
 // content: paragraphs, links
@@ -58,7 +57,7 @@ export function App() {
           {posts.map((post) => {
             return (
               <Post
-                Key={post.id}
+                key={post.id}
                 author={post.author}
                 content={post.content}
                 publishedAt={post.publishedAt}

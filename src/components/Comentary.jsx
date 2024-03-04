@@ -1,10 +1,18 @@
 import { Avatar } from "./Avatar";
-import styles from "./Comentary.module.css";
 import { ThumbsUp, Trash } from "phosphor-react";
 import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
+import styles from "./Comentary.module.css";
+import { DeleteCommentBox } from "./DeleteCommentWrapper";
 
-export const Comentary = ({ content }) => {
+export const Comentary = ({ content, onDeleteComment }) => {
+
+  function handleDeleteComment() {
+    onDeleteComment(content);
+  }
+
+
+
   const publishedDateFormatted = format(
     new Date().toString(),
     "dd 'de' LLL 'às' HH:mm",
@@ -34,7 +42,7 @@ export const Comentary = ({ content }) => {
                 {publishedDistanceToNow}
               </time>
             </div>
-            <button title="Deletar Comentário">
+            <button onClick={handleDeleteComment} title="Deletar Comentário">
               <Trash size={24} />
             </button>
           </header>

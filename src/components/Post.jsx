@@ -35,6 +35,17 @@ export const Post = (props) => {
     setCommentaryContent(event.target.value);
   }
 
+  function deleteComment(comment) {
+    commentaryList.filter((itemToDelete, index) => {
+      if (comment.match(itemToDelete)) {
+        commentaryList.splice(index, 1)
+        return commentaryList
+      }
+    })
+
+    setCommentaryList([...commentaryList])
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -55,10 +66,10 @@ export const Post = (props) => {
 
       <div className={styles.content}>
         {props.content.paragraphs?.map((paragraph) => {
-          return <p>{paragraph}</p>;
+          return <p key={paragraph}>{paragraph}</p>;
         })}
         {props.content.links?.map((links) => {
-          return <a href="">{links}</a>;
+          return <p key={links}><a href="">{links}</a></p>;
         })}
       </div>
 
@@ -80,7 +91,7 @@ export const Post = (props) => {
 
       <div className={styles.commentList}>
         {commentaryList.map((content) => {
-          return <Comentary content={content} />;
+          return <Comentary key={content} content={content} onDeleteComment={deleteComment} />;
         })}
       </div>
     </article>
