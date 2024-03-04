@@ -1,7 +1,24 @@
 import { Avatar } from "./Avatar";
 import styles from "./Comentary.module.css";
 import { ThumbsUp, Trash } from "phosphor-react";
-export const Comentary = () => {
+import { format, formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale/pt-BR";
+
+export const Comentary = ({ content }) => {
+  const publishedDateFormatted = format(
+    new Date().toString(),
+    "dd 'de' LLL 'às' HH:mm",
+    { locale: ptBR }
+  );
+
+  const publishedDistanceToNow = formatDistanceToNow(new Date().toString(), {
+    locale: ptBR,
+    includeSeconds: true,
+  })
+    .replace("menos de", "há")
+    .replace("cerca de", "há")
+    .concat("  atrás");
+
   return (
     <div className={styles.comment}>
       <Avatar src="https://metro.co.uk/wp-content/uploads/2019/03/SEI_57275281.jpg?quality=90&strip=all&zoom=1&resize=180%2C170" />
@@ -10,22 +27,18 @@ export const Comentary = () => {
           <header>
             <div className={styles.authorAndTime}>
               <strong>Cersei Lannister</strong>
-              <span>Rainha dos Sete Reinos</span>
-              <time dateTime="2024-05-11 08:13:30">Cerca de 1h atráz</time>
+              <time
+                title={publishedDateFormatted}
+                dateTime={new Date().toISOString()}
+              >
+                {publishedDistanceToNow}
+              </time>
             </div>
             <button title="Deletar Comentário">
-              <Trash size={20} />
+              <Trash size={24} />
             </button>
           </header>
-          <p>Ah, Jon Snow, o bastardo do Norte. Tão nobre, tão tolo.</p>
-          <p>
-            Enquanto você se preocupa com Caminhantes Brancos, eu estou ocupada
-            governando os Sete Reinos. Lembre-se, o inverno pode estar chegando,
-            mas o leão sempre prevalece.
-          </p>
-          <p>
-            <a href="">#Lannister #GameofThrones</a>
-          </p>
+          <p>{content}</p>
         </div>
 
         <footer>

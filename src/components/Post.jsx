@@ -1,12 +1,13 @@
-import { format, formatDistanceToNow } from "date-fns";
+import { format, formatDistanceToNow, set } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 import { Avatar } from "./Avatar";
 import { Comentary } from "./Comentary";
-import { useState } from "react";
 import styles from "../components/Post.module.css";
+import { useState } from "react";
 
 export const Post = (props) => {
-  const [comentaries, setComentaries] = useState([]);
+  const [commentaryList, setCommentaryList] = useState([]);
+  const [commentaryContent, setCommentaryContent] = useState("");
 
   // Formating date and hours using date-fns
   const publishedDateFormatted = format(
@@ -23,10 +24,15 @@ export const Post = (props) => {
     .replace("cerca de", "há")
     .concat("  atrás");
 
-  // function handle of submit form comentaries
-  function handleComentaries() {
+  function handleSubmitFormCommentary(event) {
     event.preventDefault();
-    return setComentaries([...comentaries, comentaries.length + 1]);
+    const getContentComentary = event.target.commentArea.value;
+    setCommentaryList([getContentComentary, ...commentaryList]);
+    setCommentaryContent("");
+  }
+
+  function handleChangeComentaryField(event) {
+    setCommentaryContent(event.target.value);
   }
 
   return (
@@ -57,9 +63,15 @@ export const Post = (props) => {
       </div>
 
       <footer className={styles.comentaryForm}>
-        <form onSubmit={handleComentaries}>
+        <form onSubmit={handleSubmitFormCommentary}>
           <strong>Deixe seu feedback</strong>
-          <textarea />
+          <textarea
+            onChange={handleChangeComentaryField}
+            name="commentArea"
+            value={commentaryContent}
+            maxLength={3000}
+            placeholder="O que você pensa sobre isso?"
+          />
           <div className={styles.buttonContainer}>
             <button type="submit">Publicar</button>
           </div>
@@ -67,8 +79,8 @@ export const Post = (props) => {
       </footer>
 
       <div className={styles.commentList}>
-        {comentaries.map((comment) => {
-          return <Comentary />;
+        {commentaryList.map((content) => {
+          return <Comentary content={content} />;
         })}
       </div>
     </article>
